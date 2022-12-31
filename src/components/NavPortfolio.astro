@@ -1,0 +1,32 @@
+---
+import { HamburgerBtn } from "../react/HamburgerBtn";
+---
+
+<nav class="pt-5 flex md:flex-row items-center justify-between">
+  <a class="font-black text-2xl" href="/">OREALY</a>
+
+  <!-- Menu mobile -->
+  <div class="md:hidden">
+    <HamburgerBtn client:only />
+  </div>
+
+  <!-- Menu desktop -->
+  <ul class="hidden md:flex gap-9">
+    <li class="font-medium">
+      <a href="#">SOBRE MI</a>
+    </li>
+    <li class="font-medium">
+      <a href="#">SKILLS</a>
+    </li>
+    <li class="font-medium">
+      <a href="#">PROYECTOS</a>
+    </li>
+    <li>
+      <a
+        href="/ blog"
+        class="bg-primary-900 rounded-md px-8 py-1 font-semibold text-white shadow-lg shadow-primary-900/40"
+        >BLOG</a
+      >
+    </li>
+  </ul>
+</nav>
