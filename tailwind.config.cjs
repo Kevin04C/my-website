@@ -7,10 +7,13 @@ module.exports = {
         primary: {
           900: "#4617FF",
           800: "#3152FF",
-          700: "4277FF",
+          700: "#4277FF",
         },
         secondary: "#FEC637",
         paragraph: "#242333",
+      },
+      gridTemplateColumns: {
+        projects: "repeat(auto-fit, minmax(300px, 1fr))",
       },
     },
   },
