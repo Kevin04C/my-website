@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Button } from "./Button.js";
 
 export const HamburgerBtn = () => {
   const [showMenu, setShowMenu] = useState(false);
 
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     setShowMenu(!showMenu);
   };
+
+  useEffect(() => {
+    if (showMenu) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }, [showMenu]);
 
   return (
     <>
@@ -27,17 +36,15 @@ export const HamburgerBtn = () => {
       </button>
 
       <div
-        className={`${
-          showMenu
+        className={`${showMenu
             ? "opacity-1 pointer-events-auto"
             : "opacity-0 pointer-events-none"
-        } absolute inset-0 w-full h-screen bg-black bg-opacity-60 flex justify-end transition-opacity duration-200 overflow-hidden`}
+          } absolute z-10 inset-0 w-full h-screen bg-black bg-opacity-60 flex justify-end transition-opacity duration-200 overflow-hidden`}
         onClick={toggleMenu}
       >
         <ul
-          className={`${
-            showMenu ? "translate-x-0" : "translate-x-full"
-          } flex flex-col text-left gap-4 w-3/4 h-full bg-white p-8 transition-all duration-300`}
+          className={`${showMenu ? "translate-x-0" : "translate-x-full"
+            } flex flex-col text-left gap-4 w-3/4 h-full bg-white p-8 transition-all duration-300`}
         >
           <li className="self-end">
             <button onClick={toggleMenu}>
@@ -56,27 +63,34 @@ export const HamburgerBtn = () => {
             </button>
           </li>
           <li className="font-medium">
-            <a href="#" onClick={toggleMenu}>
+            <a
+              href="#sobremi"
+              className="hover:text-primary-900 transition-colors"
+              onClick={toggleMenu}
+            >
               SOBRE MI
             </a>
           </li>
           <li className="font-medium">
-            <a href="#" onClick={toggleMenu}>
+            <a
+              href="#skills"
+              className="hover:text-primary-900 transition-colors"
+              onClick={toggleMenu}
+            >
               SKILLS
             </a>
           </li>
           <li className="font-medium">
-            <a href="#" onClick={toggleMenu}>
+            <a
+              href="#proyectos"
+              className="hover:text-primary-900 transition-colors"
+              onClick={toggleMenu}
+            >
               PROYECTOS
             </a>
           </li>
           <li>
-            <a
-              href="/blog"
-              className="bg-primary-900 rounded-md px-8 py-1 font-semibold text-white shadow-lg shadow-primary-900/40"
-            >
-              BLOG
-            </a>
+            <Button href="/blog" type="primary" text="Blog" />
           </li>
         </ul>
       </div>

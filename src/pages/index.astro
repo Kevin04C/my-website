@@ -1,8 +1,17 @@
 ---
-import NavPortfolio from "../components/NavPortfolio.astro";
 import Layout from "../layout/Layout.astro";
+import Home from "../components/Home.astro";
+import AboutMe from "../components/AboutMe.astro";
+import Projects from "../components/Projects.astro";
+import LastArticles from "../components/LastArticles.astro";
 ---
 
 <Layout title="Orealy">
-  <NavPortfolio />
+  <Home />
+  <main>
+    <AboutMe />
+    <Projects />
+    <LastArticles />
+  </main>
 </Layout>
+
