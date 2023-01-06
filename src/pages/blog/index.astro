@@ -1,0 +1,30 @@
+---
+import Article from "../../components/Article.astro";
+import Categories from "../../components/Categories.astro";
+import NavBarBlog from "../../components/NavBarBlog.astro";
+import Layout from "../../layout/Layout.astro";
+---
+
+<Layout title="Orealy-blog">
+  <NavBarBlog />
+  <main class="mt-9 mb-5">
+    <div class="md:flex gap-5">
+      <section class="md:w-8/12">
+        <h3 class="text-primary-900 font-extrabold md:text-xl mb-4">
+          ÚLTIMOS ARTICULOS
+        </h3>
+        <div>
+          <Article />
+          <Article />
+          <Article />
+        </div>
+        <Categories />
+      </section>
+      <aside class="mt-8 w-full md:w-4/12">
+        <h3 class="text-primary-900 font-extrabold md:text-xl mb-4">ÚLTIMO VIDEO</h3>
+        <div class="w-full h-48 bg-primary-700 mt-5 rounded-md">
+        </div>
+      </aside>
+    </div>
+  </main>
+</Layout>
