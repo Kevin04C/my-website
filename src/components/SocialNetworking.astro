@@ -1,4 +1,11 @@
-<div class="my-8">
+---
+interface Props {
+  style?: string;
+}
+const { style } = Astro.props;
+---
+
+<div class={style}>
   <ul class="flex gap-4 items-center">
     <li class="hover:scale-[1.2] hover:transition-transform">
       <a
