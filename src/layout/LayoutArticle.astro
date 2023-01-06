@@ -1,0 +1,52 @@
+---
+import Category from "../components/Category.astro";
+import NavBarBlog from "../components/NavBarBlog.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body class="px-5 xl:px-0 max-w-7xl mx-auto">
+    <NavBarBlog />
+    <section>
+      <div class="md:flex gap-5">
+        <div class="grow">
+          <slot />
+        </div>
+        <div class="mt-8 md:w-2/12">
+          <h3 class="md:text-xl font-black text-primary-900 mb-4">
+            CATEGORÍAS
+          </h3>
+          <div class="flex flex-col gap-2 items-start">
+            <Category href="#" categorie="REACT" />
+            <Category href="#" categorie="NODE" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+
+<style is:inline>
+  pre {
+    padding: 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  }
+  @layer components {
+    h1 {
+      @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+    }
+  }
+</style>
