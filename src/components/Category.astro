@@ -1,0 +1,14 @@
+---
+interface Props {
+  categorie: string;
+  href: string;
+}
+const { categorie, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="text-xs text-primary-700 bg-primary-700 bg-opacity-[15%] px-4 py-2 rounded-md cursor-pointer hover:bg-opacity-[20%]"
+>
+  {categorie}
+</a>
