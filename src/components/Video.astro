@@ -1,0 +1,26 @@
+---
+const API_KEY = import.meta.env.API_KEY;
+const CHANNEL_ID = import.meta.env.CHANNEL_ID;
+const URL = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=1`;
+
+const response = await fetch(URL);
+const data = await response.json();
+console.log(data);
+const { id, snippet } = data.items[0]; // properties last video
+---
+
+<a
+  href={`https://www.youtube.com/watch?v=${id.videoId}`}
+  class="w-full overflow-hidden block"
+  target="_blank">
+  <figure>
+    <img
+      src={snippet?.thumbnails.medium.url}
+      alt={snippet.title}
+      class="rounded-md hover:opacity-80 transition-all"
+    />
+    <figcaption class="font-bold text-paragraph mt-3">
+      {snippet.title}
+    </figcaption>
+  </figure>
+</a>
