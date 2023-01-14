@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+pre {
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+@layer base {
+  h1 {
+    @apply text-5xl font-black mb-5;
+  }
+  h2 {
+    @apply text-4xl font-black mb-4;
+  }
+  h3 {
+    @apply text-3xl font-black mb-3;
+  }
+  h4 {
+    @apply text-2xl font-black mb-2;
+  }
+  h5 {
+    @apply text-xl font-black mb-1;
+  }
+  p {
+    @apply mb-4 text-paragraph opacity-70;
+  }
+
+  p > code {
+    @apply bg-slate-200 rounded px-1 text-sm text-black;
+  }
+  pre > code > span {
+    @apply text-sm;
+  }
+}
