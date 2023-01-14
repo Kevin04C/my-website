@@ -1,0 +1,65 @@
+---
+import Aside from '../../components/Aside.astro';
+import { uniqueCategories } from '../../components/Categories.astro';
+import NavBarBlog from '../../components/NavBarBlog.astro';
+import Layout from '../../layout/Layout.astro';
+import { articles } from '../../components/ArticleList.astro';
+import Article from '../../components/Article.astro';
+
+export function getStaticPaths() {
+  return uniqueCategories.map(tag => ({
+    params: { category: tag },
+  }));
+}
+
+const { category } = Astro.params;
+
+const filterArticles = articles.filter(p =>
+  p.frontmatter.categories.includes(category)
+);
+
+const title = `Articulos de ${category}`;
+---
+
+<Layout title={title} description={title}>
+  <NavBarBlog />
+  <main class="mt-9 mb-5">
+    <div class="md:flex gap-5 items-start">
+      <div class="md:w-8/12">
+        <div
+          class="h-[70px] bg-primary-900 bg-opacity-10 rounded relative overflow-hidden">
+          <span
+            class="absolute w-full text-9xl text-primary-900 opacity-10 left-2 top-[50%] -translate-y-[50%] font-black select-none"
+            >#</span
+          >
+          <h3
+            class="text-primary-900 absolute left-10 w-full top-[50%] -translate-y-[50%]">
+            {category.toUpperCase()}
+          </h3>
+        </div>
+        <section class="mt-5">
+          {
+            filterArticles.length === 0 && (
+              <p class="text-xl">
+                Aún no tenemos artículos con esta temática :(
+              </p>
+            )
+          }
+
+          {
+            filterArticles.map(article => (
+              <Article
+                href={article.url}
+                title={article.frontmatter.title}
+                created={article.frontmatter.created}
+                image={article.frontmatter.image}
+                categories={article.frontmatter.categories}
+              />
+            ))
+          }
+        </section>
+      </div>
+      <Aside />
+    </div>
+  </main>
+</Layout>
