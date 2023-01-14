@@ -1,14 +1,22 @@
 ---
-import Category from "./Category.astro";
+import Category from './Category.astro';
+export const posts = await Astro.glob('../pages/blog/post/*.mdx');
+export const categories: string[] = posts.flatMap(
+  p => p.frontmatter.categories
+);
+export const moreCategories = ['html', 'css', 'react', 'javascript'];
+export const uniqueCategories: string[] = [
+  ...new Set([...moreCategories, ...categories]),
+];
 ---
 
-<div class="mt-8">
-  <h3 class="font-black text-primary-900 md:text-xl mb-4">
-    ARTÍCULOS POR CATEGORÍAS
-  </h3>
-
-  <div class="flex gap-3 flex-wrap">
-    <Category href="#" categorie="JAVASCRIPT" />
-    <Category href="#" categorie="REACT" />
-  </div>
+<div class="flex gap-3 flex-wrap mt-2">
+  {
+    uniqueCategories.map(category => (
+      <Category
+        href={`/category/${category}`}
+        categorie={category.toUpperCase()}
+      />
+    ))
+  }
 </div>
