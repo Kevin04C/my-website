@@ -1,0 +1,18 @@
+---
+import Article from './Article.astro';
+export const articles = await Astro.glob('../pages/blog/post/*.mdx');
+---
+
+<section>
+  {
+    articles.map(article => (
+      <Article
+        href={article.url}
+        title={article.frontmatter.title}
+        created={article.frontmatter.created}
+        image={article.frontmatter.image}
+        categories={article.frontmatter.categories}
+      />
+    ))
+  }
+</section>
