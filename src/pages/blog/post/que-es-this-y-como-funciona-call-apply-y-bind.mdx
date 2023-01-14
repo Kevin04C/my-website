@@ -1,0 +1,89 @@
+---
+layout: ../../../layout/LayoutArticle.astro
+title: ¿QUÉ ES THIS Y CÓMO FUNCIONA CALL APPLY Y BIND?
+description: Aprende qué es this y como funciona call appy y bind en JavaScript
+created: 01-09-2023
+categories:
+  - javascript
+image: /languages/javascript.jpg
+---
+
+Al momento de estar aprendiendo JavaScript una de cosas más confusas para los que estan empezando es el tema de `this` que en comparación con otro lenguages de programación como `JAVA`, `PHP` es muy diferente y esto muchas veces es motivo de frustración para los que recién estan empezando, pero esto es sumamente sencillo y en este articulo lo entenderás de una vez.
+
+Para empezar en terminos sencillos y simples la palabra reservada `this` hace referencia al **contexto que ejecuta esa función** que por defecto es `window`, recordemos que esto no aplica con las **arrow functions** o funciones flechas.
+
+```js
+console.log(this); //window
+//entonces podriamos decir que:
+console.log(this === window); //true
+```
+
+Entonces como `this` por defecto hace referencia al objeto `window` ¿Podemos agregarle propiedades como si se tratase de un objeto normal? y la respuesta es **SÍ**, esto viéndose de la siguiente manera:
+
+```js
+//agregando propiedades al objeto global usando this
+this.language = 'JavaScript';
+//para recuperarlo podemos usar window o simplemente llamarlo
+console.log(language); //JavaScript
+console.log(window.language); //
+```
+
+Creo que hasta este punto esta todo claro que por `this` por defecto hace referencia a `windows` y como podemos recuperar sus valores, pero que sucede con los objetos, pues veamos un ejemplo:
+
+```js
+this.firstName = 'Orealy';
+this.lastName = 'Dev';
+
+const myObject = {
+  firstName: 'Jhon',
+  lastName: 'Arcb',
+  fullName: function () {
+    return this.firstName + ' ' + this.lastName;
+  },
+};
+console.log(myObject.fullName()); // 'Jhon Arcb'
+```
+
+Para este ejemplo primero establecimos 2 propiedades en este caso `firstName` y `lastName` al objeto window y luego tenemos un objeto con 3 propiedades las mismas que habiamos declarado anteriormente pero esta con una función `fullName`. Esta función hace uso la palabra reservada `this` para acceder a las propierdades `firstName` y `lastName` y si llamamos a `myObject.fullName()` obtendremos **'Jhon Arcb'** y esto es así porque como hemos comentando anteriormente la palabra reservada `this` hace referencia al contexto que esta ejecutando esa función que en este caso es nuestro objeto **myObject**.
+
+Para los casos que por alguna razón que quisieramos cambiar hacia donde apunta `this` podemos usar los métodos `call` `apply` y `bind` cosa muy común que se hacia en REACT antes que aparecieran los HOOKS.
+
+### ¿CÓMO USAR CALL APPLY Y BIND?
+
+Supongamos que tenemos la siguiente funcion para obtener las coordenadas:
+
+```js
+function getCoordinates(msg) {
+  return msg + ' ' + this.latitude + '-' + this.longitude;
+}
+```
+
+Si ejecutaramos esta función obtendriamos undefined porque que no tenemos definidas las propiedades `latitude` y `longitude` en el objeto `window` y por lo tanto `this` no apuntaria a nada, para solucionar esto podemos usar los métodos `call` `apply` y `bind` disponibles en las funciones.
+
+##### USANDO CALL APPLY Y BIND
+
+```js
+const myCoordinates = {
+  latitude: 10,
+  longitude: 20,
+};
+
+// call
+getCoordinates.call(myCoordinates, 'Cordenadas:'); //Cordenadas: 10-20
+// apply
+getCoordinates.apply(myCoordinates, ['Cordenadas:']); //Cordenadas: 10-20
+// bind
+const getCoordinatesBind = getCoordinates.bind(myCoordinates, ['Cordenadas:']); //Cordenadas: 10-20
+getCoordinatesBind();
+```
+
+En el primer ejemplo hemos usando `call` y en el segundo `apply` y en ambos casos hemos pasado como primer argumento el objeto al cual queremos que apunte `this`, la diferencia entre ambos es que con `call` los argumentos se pasan separándolos por comas, mientras que con `apply` los argumentos de pasan en un array.
+
+La diferencia con `bind` es que nos devuelve una **_nueva función_** funcion que podemos ejecutar como cualquier otra, en donde el `this` apunta al objeto que le pasamos en este caso `myCoordinates`, los argumentos los podemos pasar en en forma de un array como lo hemos hecho arriba pero tambien podemos pasarlo cuando llamemos `getCoordinatesBind` o el nombre a la función que tu le pongas luciendo de la siguiente manera:
+
+```js
+const getCoordinatesBind = getCoordinates.bind(myCoordinates);
+getCoordinatesBind('Cordenadas:'); //Cordenadas: 10-20
+```
+
+Como hemos visto el `this` y las métodos que nos permiten cambiar hacia donde apunta son bastantes sencillos, particularme me gusta usar mas `apply` y `bind` pero eres libre de usar el que más te guste 🧑‍💻.
