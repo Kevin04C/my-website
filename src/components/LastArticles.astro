@@ -1,17 +1,23 @@
 ---
-import Article from "./Article.astro";
+import Article from './Article.astro';
+import { articles } from './ArticleList.astro';
+const lastArticles = articles.slice(0, 3);
 ---
 
 <section class="my-32">
-  <h3 class="text-4xl md:text-5xl font-extrabold text-primary-900 mb-10">
-    ÚLTIMOS ARTÍCULOS
-  </h3>
+  <h3 class="text-4xl md:text-5xl font-extrabold text-primary-900 mb-10">ÚLTIMOS ARTÍCULOS</h3>
   <section class="flex flex-col gap-5 mb-4">
-    <Article />
-    <Article />
-    <Article />
+    {
+      lastArticles.map(article => (
+        <Article
+          href={article.url}
+          title={article.frontmatter.title}
+          created={article.frontmatter.created}
+          image={article.frontmatter.image}
+          categories={article.frontmatter.categories}
+        />
+      ))
+    }
   </section>
-  <a href="/blog" class="block hover:underline text-primary-700">
-    Ver más articulos</a
-  >
+  <a href="/blog" class="block hover:underline text-primary-700"> Ver más articulos</a>
 </section>
