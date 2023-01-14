@@ -1,5 +1,5 @@
 ---
-import { Button } from "../react/Button";
+import { Button } from '../react/Button';
 interface Props {
   name: string;
   description: string;
@@ -12,13 +12,12 @@ const { name, description, technologies, project, github } = Astro.props;
 ---
 
 <article
-  class="bg-white border border-3 border-primary-900 drop-shadow-[10px_10px_0px_rgba(66,119,255,100%)] px-5 py-6 rounded-md hover:drop-shadow-none transition-all"
->
+  class="bg-white border border-3 border-primary-900 drop-shadow-[10px_10px_0px_rgba(66,119,255,100%)] px-5 py-6 rounded-md hover:drop-shadow-none transition-all">
   <div class="mb-5">
     <h4 class="font-bold text-2xl text-primary-900 mb-[10px]">{name}</h4>
     <ul class="flex gap-2">
       {
-        technologies.map((t) => (
+        technologies.map(t => (
           <li class="bg-secondary text-xs rounded-lg px-2 text-white">{t}</li>
         ))
       }
@@ -30,9 +29,21 @@ const { name, description, technologies, project, github } = Astro.props;
     </p>
 
     <div class="flex gap-4">
-      <Button client:load href={project} text="Ver demo" type="primary" />
+      <Button
+        client:load
+        href={project}
+        text="Ver demo"
+        type="primary"
+        target="_blank"
+      />
 
-      <Button client:load href={github} text="Ver código" type="secondary" />
+      <Button
+        client:load
+        href={github}
+        text="Ver código"
+        type="secondary"
+        target="_blank"
+      />
     </div>
   </div>
 </article>
