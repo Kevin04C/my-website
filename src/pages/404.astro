@@ -1,0 +1,21 @@
+---
+import Layout from '../layout/Layout.astro';
+import { Button } from '../react/Button';
+---
+
+<Layout title="Not found" description="Not found">
+  <section class="relative min-h-screen">
+    <div class="absolute inset-0 h-full flex justify-center items-center">
+      <div class="w-[400px] flex flex-col gap-5 text-center">
+        <h3 class="text-9xl font-black text-primary-900">404</h3>
+        <p class="text-pagaraph opacity-70 text-2xl">
+          Upss, parece que la ruta buscastes no existe
+        </p>
+        <div class="flex gap-3 justify-center">
+          <Button type="primary" text="PORTAFOLIO" href="/" />
+          <Button type="secondary" text="BLOG" href="/blog" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
