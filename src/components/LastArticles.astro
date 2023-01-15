@@ -1,6 +1,6 @@
 ---
 import Article from './Article.astro';
-import { articles } from './ArticleList.astro';
+const articles = await Astro.glob('../pages/blog/post/*.mdx');
 const lastArticles = articles.slice(0, 3);
 ---
 

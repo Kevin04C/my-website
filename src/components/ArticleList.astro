@@ -1,6 +1,6 @@
 ---
 import Article from './Article.astro';
-export const articles = await Astro.glob('../pages/blog/post/*.mdx');
+const articles = await Astro.glob('../pages/blog/post/*.mdx');
 ---
 
 <section>
