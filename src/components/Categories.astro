@@ -1,22 +1,15 @@
 ---
 import Category from './Category.astro';
-export const posts = await Astro.glob('../pages/blog/post/*.mdx');
-export const categories: string[] = posts.flatMap(
-  p => p.frontmatter.categories
-);
-export const moreCategories = ['html', 'css', 'react', 'javascript'];
-export const uniqueCategories: string[] = [
-  ...new Set([...moreCategories, ...categories]),
-];
+const posts = await Astro.glob('../pages/blog/post/*.mdx');
+const categories: string[] = posts.flatMap(p => p.frontmatter.categories);
+const moreCategories = ['html', 'css', 'react', 'javascript'];
+const uniqueCategories: string[] = [...new Set([...moreCategories, ...categories])];
 ---
 
 <div class="flex gap-3 flex-wrap mt-2">
   {
     uniqueCategories.map(category => (
-      <Category
-        href={`/category/${category}`}
-        categorie={category.toUpperCase()}
-      />
+      <Category href={`/category/${category}`} categorie={category.toUpperCase()} />
     ))
   }
 </div>
