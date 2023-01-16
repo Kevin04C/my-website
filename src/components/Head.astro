@@ -6,6 +6,8 @@ interface Props {
 }
 
 const { title, description, imageUrl = '/images/kevin.jpg' } = Astro.props;
+console.log(Astro.url);
+console.log(location.href);
 ---
 
 <head>
@@ -13,23 +15,20 @@ const { title, description, imageUrl = '/images/kevin.jpg' } = Astro.props;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
 
-  <meta
-    name="keywords"
-    content="orealy, orealydev, kevindev, kevintech, orealytech"
-  />
+  <meta name="keywords" content="orealy, orealydev, kevindev, kevintech, orealytech" />
   <meta name="description" content={description} />
   <link rel="shortcut icon" href={imageUrl} type="image/jpg" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content={Astro.url} />
+  <meta property="og:url" content="https://www.orealy.tech" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={`https://orealy.tech${imageUrl}`} />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content={Astro.url} />
+  <meta property="twitter:url" content="https://www.orealy.tech" />
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content={`https://orealy.tech${imageUrl}`} />
