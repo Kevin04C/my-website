@@ -1,0 +1,61 @@
+---
+layout: ../../layout/LayoutArticle.astro
+title: Entendiendo la RECURSIVIDAD con JAVASCRIPT
+description: Entiende la recursividad fácil con estos ejemplos
+created: 01-31-2023
+categories:
+  - javascript
+image: /languages/javascript.jpg
+---
+
+La recursividad es forma de solucionar problemas mediante una función que **se llama a si misma** varias veces según una condición, cuando esta condición da `false` la función deja de llamarse, para entener todo esto vamos a ver unos ejemplos.
+
+Piensa en el siguiente problema:
+
+**_Crear una función que te permita obtener el factorial de un numero, es decir:_**
+
+```js
+//si yo llamo mi  funcion devería devolver
+factorial(6); //720
+factorial(5); //120
+```
+
+> **Nota**:  
+> Recuerda que para sacar el factorial de un numero es de la siguiente manera !5 `5x4x3x2x1`, es decir tenemos que multiplicar todos los numeros positivos de ese número hasta llegar a 1.
+
+para darle solución a ese problemas hay varias formas, primero te explicaré una forma de hacerlo sin recursividad y luego con recursividad para que veas los cambios en el código y cómo se simplifica.
+
+##### SOLUCIÓN SIN RECURSIVIDAD
+
+```js
+function factorial(n) {
+  let result = n;
+  for (let i = n - 1; i >= 1; i--) {
+    result = result * i;
+  }
+  return result;
+}
+factorial(5); //120
+```
+
+La función que anterior que acabas de ver resuelve el problema planteado anteriormente sin recursividad, lo que hace haciendo es crear una variables `result` que sera mi **acumulador** para cuando haga las distintas multiplicaciones por ejemplo 5x4x3... y asi sucesivamente.
+
+El valor de result empieza con `n` porque va a ser el numero con el que vamos a multiplicar, si nos mandan a sacar el **factorial de 5** result seria **5**, si es 6 pues result seria **6**. Luego se crea un for para poder ir restando el iterador, multiplicarlo y poder actualizar el valor de result, el iterador empieza en `n-1` porque tenemos empezar a multiplicarlo con el numero anterior que le sigue en este caso 4 siguiendo el caso que estemos sacando el factorial de 5 y esto se va a repetir hasta que el iterador llegue a 1, entonces se detiene el ciclo `for` y se retornar `result`.
+
+##### SOLUCIÓN CON RECURSIVIDAD
+
+La solución con recursividad es más sencilla pero hay tener algunos puntos en cuenta para hacerlo bien, como al inicio de este artículo te expliqué para que la función se vuelva a llamar esta se basa en una condición que sea `true`, pero antes de eso tenemos que definir en que punto nuestra función debe dejar de llamase, esto para que nuestra programa no se vuelva loco y se genere un **_ciclo infinitooo_** que seguro ya has experimentado con las instrucciones repetitivas, entonces nos podemos hacer la siguinte pregunta: **¿Cúando la función debe dejarse de llamar?** pues es cuando hallamos llegado a 1 porque el **factorial de !1** es simplemente 1.
+
+```js
+function factorial(n) {
+  if (n === 1) return 1;
+  return n * factorial(n - 1);
+}
+factorial(5); //120
+```
+
+Como ves a simple vista el código se ha reducito basante porque ahora estamos usando la recursividad, te explico como funciona:
+
+Primero estamos validando si `n` es 1, si esto pasa nuestra función deja de llamarse a sí misma, pero si no hemos llegado a 1 nuestra función se vuelve a llamar de la siguente manera `n * factorial(n - 1)` lo que esto está haciendo aquí es multiplicar el `n` osea el valor en el que nos encontrado por el factorial del nuevo anterior a ese.
+
+Como ves la solución aplicando recursividad ocupa menos lineas de código y es mucho más legible y eso es lo que has aprendiendo hoy.
