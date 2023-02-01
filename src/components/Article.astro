@@ -4,9 +4,9 @@ interface Props {
   title: string;
   created: string;
   image: string;
-  categories: string;
+  categories: string[];
 }
-const { href, title, created, image, categories } = Astro.props;
+const { href, title, created, image } = Astro.props as Props;
 const newDate = new Date(created).toLocaleDateString('es-us', {
   day: 'numeric',
   month: 'long',
@@ -20,7 +20,7 @@ const newDate = new Date(created).toLocaleDateString('es-us', {
   <div class="w-[90px] md:w-[60px]">
     <img
       src={image}
-      alt={categories}
+      alt={title}
       class="w-full group-hover:scale-105 transition-transform duration-300"
     />
   </div>

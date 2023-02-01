@@ -3,7 +3,7 @@ interface Props {
   categorie: string;
   href: string;
 }
-const { categorie, href } = Astro.props;
+const { categorie, href } = Astro.props as Props;
 ---
 
 <a

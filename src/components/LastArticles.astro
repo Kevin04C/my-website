@@ -1,7 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import Article from './Article.astro';
-const articles = await Astro.glob('../pages/blog/post/*.mdx');
-const lastArticles = articles.slice(0, 3);
+const allArticles = await getCollection('blog');
+const lastArticles = allArticles.slice(0, 3);
 ---
 
 <section class="my-32">
@@ -10,11 +11,11 @@ const lastArticles = articles.slice(0, 3);
     {
       lastArticles.map(article => (
         <Article
-          href={article.url}
-          title={article.frontmatter.title}
-          created={article.frontmatter.created}
-          image={article.frontmatter.image}
-          categories={article.frontmatter.categories}
+          href={'blog/posts/' + article.slug}
+          title={article.data.title}
+          created={article.data.created}
+          image={article.data.image}
+          categories={article.data.categories}
         />
       ))
     }

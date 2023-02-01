@@ -5,7 +5,7 @@ interface Props {
   imageUrl?: string;
 }
 
-const { title, description, imageUrl = '/images/kevin.jpg' } = Astro.props;
+const { title, description, imageUrl = '/images/kevin.jpg' } = Astro.props as Props;
 ---
 
 <head>
