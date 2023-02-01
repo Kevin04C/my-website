@@ -1,7 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import Category from './Category.astro';
-const posts = await Astro.glob('../pages/blog/post/*.mdx');
-const categories: string[] = posts.flatMap(p => p.frontmatter.categories);
+const posts = await getCollection('blog');
+const categories: string[] = posts.flatMap(p => p.data.categories);
 const moreCategories = ['html', 'css', 'react', 'javascript'];
 const uniqueCategories: string[] = [...new Set([...moreCategories, ...categories])];
 ---
@@ -9,7 +10,7 @@ const uniqueCategories: string[] = [...new Set([...moreCategories, ...categories
 <div class="flex gap-3 flex-wrap mt-2">
   {
     uniqueCategories.map(category => (
-      <Category href={`/category/${category}`} categorie={category.toUpperCase()} />
+      <Category href={`/blog/category/${category}`} categorie={category.toUpperCase()} />
     ))
   }
 </div>

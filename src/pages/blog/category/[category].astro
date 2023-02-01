@@ -1,12 +1,13 @@
 ---
-import Aside from '../../components/Aside.astro';
-import NavBarBlog from '../../components/NavBarBlog.astro';
-import Layout from '../../layout/Layout.astro';
-import Article from '../../components/Article.astro';
+import Aside from '../../../components/Aside.astro';
+import NavBarBlog from '../../../components/NavBarBlog.astro';
+import Layout from '../../../layout/Layout.astro';
+import Article from '../../../components/Article.astro';
+import { CollectionEntry, getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob('../blog/post/*.mdx');
-  const categories: string[] = posts.flatMap(p => p.frontmatter.categories);
+  const posts = await getCollection('blog');
+  const categories: string[] = posts.flatMap(p => p.data.categories);
   const moreCategories = ['html', 'css', 'react', 'javascript'];
   const uniqueCategories: string[] = [...new Set([...moreCategories, ...categories])];
 
@@ -14,9 +15,9 @@ export async function getStaticPaths() {
 }
 
 const { category } = Astro.params;
-const { articles } = Astro.props;
+const { articles } = Astro.props as { articles: CollectionEntry<'blog'>[] };
 
-const filterArticles = articles.filter(p => p.frontmatter.categories.includes(category));
+const filterArticles = articles.filter(p => p.data.categories.includes(category));
 
 const title = `Articulos de ${category}`;
 ---
@@ -46,11 +47,11 @@ const title = `Articulos de ${category}`;
           {
             filterArticles.map(article => (
               <Article
-                href={article.url}
-                title={article.frontmatter.title}
-                created={article.frontmatter.created}
-                image={article.frontmatter.image}
-                categories={article.frontmatter.categories}
+                href={'/blog/posts/' + article.slug}
+                title={article.data.title}
+                created={article.data.created}
+                image={article.data.image}
+                categories={article.data.categories}
               />
             ))
           }

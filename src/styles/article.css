@@ -30,9 +30,16 @@ pre {
   }
 
   p > code {
-    @apply bg-slate-200 rounded px-1 text-sm text-black;
+    @apply bg-slate-300 rounded px-1 text-sm text-black;
   }
   pre > code > span {
     @apply text-sm;
+  }
+  blockquote {
+    @apply bg-slate-200 py-2 px-4 rounded my-5;
+    
+  }
+  blockquote > p {
+    @apply text-paragraph;
   }
 }

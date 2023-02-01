@@ -1,17 +1,18 @@
 ---
+import { getCollection } from 'astro:content';
 import Article from './Article.astro';
-const articles = await Astro.glob('../pages/blog/post/*.mdx');
+const allArticles = await getCollection('blog');
 ---
 
 <section>
   {
-    articles.map(article => (
+    allArticles.map(article => (
       <Article
-        href={article.url}
-        title={article.frontmatter.title}
-        created={article.frontmatter.created}
-        image={article.frontmatter.image}
-        categories={article.frontmatter.categories}
+        href={'blog/posts/' + article.slug}
+        title={article.data.title}
+        created={article.data.created}
+        image={article.data.image}
+        categories={article.data.categories}
       />
     ))
   }
