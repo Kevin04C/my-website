@@ -38,7 +38,7 @@ function factorial(n) {
 factorial(5); //120
 ```
 
-La función que anterior que acabas de ver resuelve el problema planteado anteriormente sin recursividad, lo que hace haciendo es crear una variables `result` que sera mi **acumulador** para cuando haga las distintas multiplicaciones por ejemplo 5x4x3... y asi sucesivamente.
+La función que anterior que acabas de ver resuelve el problema planteado anteriormente sin recursividad, lo que hace es crear una variables `result` que sera mi **acumulador** para cuando haga las distintas multiplicaciones por ejemplo 5x4x3... y asi sucesivamente.
 
 El valor de result empieza con `n` porque va a ser el numero con el que vamos a multiplicar, si nos mandan a sacar el **factorial de 5** result seria **5**, si es 6 pues result seria **6**. Luego se crea un for para poder ir restando el iterador, multiplicarlo y poder actualizar el valor de result, el iterador empieza en `n-1` porque tenemos empezar a multiplicarlo con el numero anterior que le sigue en este caso 4 siguiendo el caso que estemos sacando el factorial de 5 y esto se va a repetir hasta que el iterador llegue a 1, entonces se detiene el ciclo `for` y se retornar `result`.
 
