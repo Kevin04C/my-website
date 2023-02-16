@@ -8,7 +8,7 @@ const allArticles = await getCollection('blog');
   {
     allArticles.map(article => (
       <Article
-        href={'blog/posts/' + article.slug}
+        href={'/blog/posts/' + article.slug}
         title={article.data.title}
         created={article.data.created}
         image={article.data.image}
