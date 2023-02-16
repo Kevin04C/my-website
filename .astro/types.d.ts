@@ -67,6 +67,13 @@ declare module 'astro:content' {
 
 	const entryMap: {
 		"blog": {
+"metodos-de-array-javascript.mdx": {
+  id: "metodos-de-array-javascript.mdx",
+  slug: "metodos-de-array-javascript",
+  body: string,
+  collection: "blog",
+  data: InferEntrySchema<"blog">
+},
 "que-es-this-y-como-funciona-call-apply-y-bind.mdx": {
   id: "que-es-this-y-como-funciona-call-apply-y-bind.mdx",
   slug: "que-es-this-y-como-funciona-call-apply-y-bind",

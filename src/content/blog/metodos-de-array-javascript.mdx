@@ -1,0 +1,181 @@
+---
+layout: ../../layout/LayoutArticle.astro
+title: Aprende métodos de array en JavaScript
+description: Aprende qué es this y como funciona call appy y bind en JavaScript
+created: 02-15-2023
+categories:
+  - javascript
+image: /languages/javascript.jpg
+---
+
+Trabajar con arreglos es una de las cosas que vas a hacer casi siempre en JavaScript es por ello que debes aprender a usarlo según tus necesidades, en este artículo te explicaré algunos métodos de array que te serán muy útiles al momento de estar programando.
+
+Los ejemplos que verás continuación serán practicos y sencillos para que aprenas a usarlo, pero recuerda que no hay limites.
+
+> **Nota**:  
+> Todos los metodos de array que veremos a continuación cuenta con 3 parámetros.
+>
+> `CallbackFn`  
+>  Función que se ejecuta para cada elemento de la matriz.
+>
+> esta función es llamada con estos argumentos:
+>
+> `element`  
+> Función que se ejecuta para cada elemento de la matriz.
+> El elemento actual que se procesa en la matriz.
+>
+> `index`  
+> Indíce del elemento actual que se precesa en la matriz similar a cuando hacemos un for.
+>
+> `array`  
+> El array sobre el cual estamos aplicando la funcion map.
+
+### forEach
+
+Uno de los primeros métodos que veremos es `forEach` este es un método que nos permite **solo recorrar un array** simular a un for normal o un for of veamos un ejemplo:
+
+```js
+const nums = [1, 2, 3, 4, 5];
+nums.forEach(element => {
+  console.log(element); // 1,2,3,4,5
+});
+```
+
+### map
+
+El segundo médoto de array que veremos es `map` este método de array que toma un array y retornar otro nuevo, pero tiene algo en particular ya que al momento de estar recorriendolos podemos aplicar cierta lógica para cambiar el valor de retorno, por ejemplo podemos recorrer un array de número y dentro de la `callbackFn` elevarlos al cuadrado, así obtendríamos un arreglo con los números elevados al cuadrado:
+
+```js
+const nums = [1, 2, 3, 4, 5];
+const numsElevatedTwo = nums.map((element, index, array) => {
+  return Math.pow(element, 2);
+});
+// [ 1, 4, 9, 16, 25 ]
+```
+
+Como vemos es un método bastante fácil pero muy útil pero lo podemos simplicar aún más, podríamos eliminar los démas arguementos que sabemos que están allí pero para este caso no los usaremos, otra cosa que podríamos hacer el hacer el `return` directamente eso es posible gracias a las funciones flechas, en caso que no estés usando una función flecha tendrías que poner explícitamente el return quedando de la siguiente manera:
+
+```js
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const numbersPar = nums.filter(element => {
+  if (element % 2 === 0) {
+    return true;
+  }
+});
+
+console.log(numbersPar); // [2,4,6,8,10]
+```
+
+Mucho más corto y fácil de leer.
+
+### filter
+
+El siguienete método de array que veremos es `filter` este método como su propio nombre los dice es poder filtrar los datos de acuerdo a lo que nosotros y el dato lo va a retornar cuando cuando la condición sea true, veamos un ejemplo:
+
+```js
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const numbersPar = nums.filter(element => {
+  if (element % 2 === 0) {
+    return true;
+  }
+});
+// [ 1, 4, 9, 16, 25 ]
+```
+
+Para este ejemplo a nuestro arreglo de números estamos filtrando todos los números que sean par y para esto estamos validando si el número % 2 es igual a eso, y entonces retornar true que es la condición que se necita para poder filtrarlo, esto funciona bien, pero podemos reducirno con el return inpícito de las funciones flechas quedando de la siguiente manera.
+
+```js
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const numbersPar = nums.filter(element => element % 2 === 0);
+// [ 1, 4, 9, 16, 25 ]
+```
+
+### find
+
+Este método de array nos retornar el primer elemento que coincide con una condicion, para este ejemplo lo haré con objetos pero recuerda que los puedes aplicar con cualquier otro dato en particulass
+
+```js
+const users = [
+  { id: 'cad45449', username: 'Lucas' },
+  { id: '45454ac9', username: 'Maria' },
+  { id: 'xada565x', username: 'Pedro' },
+  { id: '44xa908a', username: 'Juan' },
+  { id: 'adad9445', username: 'Thomas' },
+];
+
+const user = users.find(user => {
+  if (user.id === 'xada565x') {
+    return true;
+  }
+});
+console.log(user); // { id: "xada565x", username: "Pedro" }
+```
+
+Para este ejemplos estamos usando un arreglo de usarios y usamos el método `find` para encontrar al usuario que tendra el id `xada565x` y si es así retornamos true, recuerda que también podemos simplificarlo de la siguiente forma:
+
+```js
+const users = [
+  { id: 'cad45449', username: 'Lucas' },
+  { id: '45454ac9', username: 'Maria' },
+  { id: 'xada565x', username: 'Pedro' },
+  { id: '44xa908a', username: 'Juan' },
+  { id: 'adad9445', username: 'Thomas' },
+];
+
+const user = users.find(user => user.id === 'xada565x');
+console.log(user); // { id: "xada565x", username: "Pedro" }
+```
+
+### findIndex
+
+Similar al método find pero nos retorna el índice de donde se encuentra este elemento, si no lo encuentra retorna -1.
+
+```js
+const users = [
+  { id: 'cad45449', username: 'Lucas' },
+  { id: '45454ac9', username: 'Maria' },
+  { id: 'xada565x', username: 'Pedro' },
+  { id: '44xa908a', username: 'Juan' },
+  { id: 'adad9445', username: 'Thomas' },
+];
+
+const userIndex = users.findIndex(user => user.id === 'xada565x');
+console.log(user); // 2
+```
+
+```js
+const userIndex = users.findIndex(user => user.id === 'abc12');
+console.log(user); // -1 porque no lo encontró
+```
+
+### every
+
+El método every nos permite comprobar si **todos los ementos** de un array cumplen una condición, si es asi retonar true.
+Supongamos que tenemos un array de números y queremos comprobar si todos ellos son mayores que 0. Podemos hacerlo utilizando el método every de la siguiente manera:
+
+```js
+const nums = [2, 5, 12, 7, 9];
+
+const response = nums.every(num => num > 0);
+
+console.log(response); // true
+```
+
+Utilizamos el método every para comprobar que todos los elementos del array numero sean mayor a 0 devolviendo true si es mayor o false en caso contrario.
+
+### some
+
+El método some al igual que el método every nos retorna un boolean si existe un elememento que coincida con nuestra condición.
+Supongamos que tenemos un array de números y queremos comprobar si al menos uno de ellos es mayor que 10. Podemos hacerlo utilizando el método some de la siguiente manera:
+
+```js
+const numeros = [2, 5, 12, 7, 9];
+
+const response = numeros.some(num => num > 10);
+
+console.log(response); // true
+```
+
+Utilizamos el método some para comprobar si alguno de los elementos del array numeros es mayor que 10 devolviendo true si es mayor que 10, y false en caso contrario.
+
+Y esos han sido todos los métodos de array que hemos visto el día de hoy espero que hayas aprendiendo y sobre todo a identificar en que caso usar uno u otro.
