@@ -36,7 +36,7 @@ Uno de los primeros métodos que veremos es `forEach` este es un método que nos
 
 ```js
 const nums = [1, 2, 3, 4, 5];
-nums.forEach(element => {
+nums.forEach((element, index, array) => {
   console.log(element); // 1,2,3,4,5
 });
 ```
@@ -74,7 +74,7 @@ El siguienete método de array que veremos es `filter` este método como su prop
 
 ```js
 const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const numbersPar = nums.filter(element => {
+const numbersPar = nums.filter((element, index, array) => {
   if (element % 2 === 0) {
     return true;
   }
