@@ -6,15 +6,16 @@ import Article from '../../../components/Article.astro';
 import { CollectionEntry, getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const DEFAULT_CATEGORIES = ['html', 'css', 'react', 'javascript'];
+
+  const posts = (await getCollection('blog')) as unknown as CollectionEntry<'blog'>[];
   const categories: string[] = posts.flatMap(p => p.data.categories);
-  const moreCategories = ['html', 'css', 'react', 'javascript'];
-  const uniqueCategories: string[] = [...new Set([...moreCategories, ...categories])];
+  const uniqueCategories: string[] = [...new Set([...DEFAULT_CATEGORIES, ...categories])];
 
   return uniqueCategories.map(tag => ({ params: { category: tag }, props: { articles: posts } }));
 }
 
-const { category } = Astro.params;
+const { category } = Astro.params as { category: string };
 const { articles } = Astro.props as { articles: CollectionEntry<'blog'>[] };
 
 const filterArticles = articles.filter(p => p.data.categories.includes(category));
