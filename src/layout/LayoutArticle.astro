@@ -5,15 +5,14 @@ import NavBarBlog from '../components/NavBarBlog.astro';
 import { convertDate } from '../helpers/convertDate';
 import '../styles/article.css';
 
-const { title, description, minutesRead, created, image } =
-  Astro.props.frontmatter;
+const { title, description, minutesRead, created, image } = Astro.props.frontmatter;
 const newDate = convertDate(created);
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <Head title={title} description={description} imageUrl={image} />
-  <body class="px-5 xl:px-0 max-w-7xl mx-auto">
+  <body class="px-5 xl:px-0 max-w-6xl mx-auto">
     <NavBarBlog />
     <section class="mt-5 mb-10 md:w-10/12 mx-auto">
       <div class="md:flex gap-10">
@@ -21,9 +20,7 @@ const newDate = convertDate(created);
           <div class="mb-6">
             <h1 class="mb-3 text-paragraph">{title}</h1>
             <p class="text-primary-700 text-sm">
-              {newDate} - <span class="text-primary-900"
-                >{minutesRead} minutos de lectura</span
-              >
+              {newDate} - <span class="text-primary-900">{minutesRead} minutos de lectura</span>
             </p>
           </div>
           <div class="mb-10">
@@ -31,9 +28,7 @@ const newDate = convertDate(created);
           </div>
         </div>
         <div class="mt-8 md:w-3/12">
-          <h3 class="md:text-xl font-black text-primary-900 mb-4">
-            MÁS CATEGORÍAS
-          </h3>
+          <h3 class="md:text-xl font-black text-primary-900 mb-4">MÁS CATEGORÍAS</h3>
           <Categories />
         </div>
       </div>
