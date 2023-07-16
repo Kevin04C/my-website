@@ -7,14 +7,14 @@
     "github": "https://github.com/Kevin04C/journal-app"
   },
   {
-    "name": "Planificador de gastos APP",
+    "name": "Gastos APP",
     "description": "Una APP para llevar el control de todos tus gastos, muy útil cuando tenemos un presupuesto limitado.",
     "technologies": ["JS", "REACT", "CSS"],
     "project": "https://control-gastos-react-kevin04c.netlify.app/",
     "github": "https://github.com/Kevin04C/control-gastos-react"
   },
   {
-    "name": "Calendario App",
+    "name": "Calendario APP",
     "description": "App para llevar el control de todos nuestras actividades, útil para organizar nuestro tiempo.",
     "technologies": ["MONGO", "REACT", "NODE", "EXPRESS"],
     "project": "https://calendarioapp.netlify.app/",
@@ -22,7 +22,7 @@
   },
   {
     "name": "Pomodoro APP",
-    "description": "App para poner en practica la técnica de estudio pomodoro, muy útil para estudiar o trabajar.",
+    "description": "Aplica la técnica del pomodoro con esta APP.",
     "technologies": ["JS", "REACT", "CSS", "CONTEXT"],
     "project": "https://pomodoro-app-kevin.netlify.app/",
     "github": "https://github.com/Kevin04C/pomodoro-app"
