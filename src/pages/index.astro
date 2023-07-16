@@ -4,16 +4,21 @@ import Home from '../components/Home.astro';
 import AboutMe from '../components/AboutMe.astro';
 import Projects from '../components/Projects.astro';
 import LastArticles from '../components/LastArticles.astro';
+import Footer from '../components/Footer.astro';
+import Skills from '../components/Skills.astro';
+
 const title = 'Orealy';
 const description =
-  'Apasionado por el desarrollo Web, creando interfaces de usuario atractivas, efectivas, de alta calidad y escala utilizando tecnologías moderna.';
+  'Desarrollador WEB, creo intefaces de usuario atractivas, efectivas, de alta calidad y escalables utilizando tecnologías moderna.';
 ---
 
 <Layout title={title} description={description}>
   <Home />
   <main>
     <AboutMe />
+    <Skills />
     <Projects />
     <LastArticles />
   </main>
+  <Footer />
 </Layout>
