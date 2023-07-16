@@ -36,12 +36,13 @@ export const HamburgerBtn = () => {
       <div
         className={`${
           showMenu ? 'opacity-1 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        } absolute z-10 inset-0 w-full h-screen bg-black bg-opacity-60 flex justify-end transition-opacity duration-200 overflow-hidden`}
+        } absolute z-10 inset-0 w-full h-screen bg-black bg-opacity-70 flex justify-end transition-opacity duration-200 overflow-hidden`}
         onClick={toggleMenu}>
         <ul
           className={`${
             showMenu ? 'translate-x-0' : 'translate-x-full'
-          } flex flex-col text-left gap-4 w-3/4 h-full bg-white p-8 transition-all duration-300`}>
+          } flex flex-col text-left gap-4 w-3/4 h-full bg-white p-8 transition-all duration-300`}
+          onClick={e => e.stopPropagation()}>
           <li className="self-end">
             <button onClick={toggleMenu}>
               <svg
