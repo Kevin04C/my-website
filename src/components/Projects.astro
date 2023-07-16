@@ -1,14 +1,11 @@
 ---
-import Project from "./Project.astro";
-import projects from "../data/projects.json";
+import projects from '../data/projects.json';
+import { Project } from '../react/Project';
 ---
 
 <section id="proyectos" class="my-32">
-  <h3 class="text-4xl md:text-5xl font-extrabold text-primary-900 mb-10">
-    MIS PROYECTOS
-  </h3>
-
-  <div class="grid grid-cols-projects gap-8">
-    {projects.map((p) => <Project {...p} />)}
+  <h3 class="text-3xl md:text-4xl font-extrabold text-primary-900 mb-10">MIS PROYECTOS</h3>
+  <div class="grid lg:grid-cols-2 gap-8">
+    {projects.map(project => <Project {...project} />)}
   </div>
 </section>
