@@ -1,24 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
-import Article from './Article.astro';
+import ArticleList from './ArticleList.astro';
+import { CollectionEntry } from 'astro:content';
 const allArticles = await getCollection('blog');
-const lastArticles = allArticles.slice(0, 3);
+const articles = allArticles.slice(0, 3);
 ---
 
-<section class="my-32">
-  <h3 class="text-4xl md:text-5xl font-extrabold text-primary-900 mb-10">ÚLTIMOS ARTÍCULOS</h3>
-  <section class="flex flex-col gap-5 mb-4">
-    {
-      lastArticles.map(article => (
-        <Article
-          href={'blog/posts/' + article.slug}
-          title={article.data.title}
-          created={article.data.created}
-          image={article.data.image}
-          categories={article.data.categories}
-        />
-      ))
-    }
+<section class="mt-32 mb-20">
+  <h3 class="text-3xl md:text-4xl font-extrabold text-primary-900 mb-10">ÚLTIMOS ARTÍCULOS</h3>
+  <section class="mb-4">
+    <ArticleList articles={articles as unknown as CollectionEntry<'blog'>[]} />
   </section>
   <a href="/blog" class="block hover:underline text-primary-700"> Ver más articulos</a>
 </section>
