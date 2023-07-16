@@ -23,7 +23,7 @@ export const Project: FC<Props> = ({ name, description, technologies, project, g
           </h2>
           <HiMiniArrowUpRight className="font-black cursor-pointer group-hover:text-primary-900 group-hover/link:-translate-y-[1px] group-hover/link:text-opacity-60 transition-all" />
         </a>
-        <a className="group" href={github}>
+        <a className="group" href={github} target="_blank">
           <VscGithubAlt
             size={20}
             className="text-gray-600 cursor-pointer group-hover:text-primary-900 group-hover:-translate-y-[2px] transition-transform hover:opacity-60"
