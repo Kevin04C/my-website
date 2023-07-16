@@ -1,12 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
 import Article from './Article.astro';
-const allArticles = await getCollection('blog');
+import { CollectionEntry } from 'astro:content';
+
+interface Props {
+  articles: CollectionEntry<'blog'>[];
+}
+const { articles } = Astro.props as Props;
 ---
 
-<section>
+<section class="flex flex-col space-y-1">
   {
-    allArticles.map(article => (
+    articles.map(article => (
       <Article
         href={'/blog/posts/' + article.slug}
         title={article.data.title}
