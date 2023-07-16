@@ -1,0 +1,19 @@
+---
+interface Props {
+  name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Icon: any;
+}
+const { name, Icon } = Astro.props as Props;
+---
+
+<li
+  class="group flex flex-col items-center p-4 rounded-[5px] border hover:bg-primary-900 hover:bg-opacity-5 hover:border-primary-900 transition-all">
+  <div class="mb-2 group-hover:-translate-y-[3px] transition-transform">
+    <Icon />
+  </div>
+  <span
+    class="text-lg font-medium text-neutral-800 group-hover:text-primary-900 transition-all uppercase"
+    >{name}</span
+  >
+</li>
